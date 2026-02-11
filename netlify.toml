@@ -1,16 +1,23 @@
 [build]
+  # Commande de build
   command = "npm run build"
-  publish = "dist/new-deal-technologique"
+  
+  # Répertoire de publication (où se trouvent les fichiers buildés)
+  publish = "dist"
 
+# Variables d'environnement pour le build
 [build.environment]
   NODE_ENV = "production"
   NODE_VERSION = "20"
 
+# Configuration pour les Single Page Applications (SPA)
+# Redirige toutes les routes vers index.html pour le routing côté client
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Headers de sécurité et performance
 [[headers]]
   for = "/*"
   [headers.values]
@@ -19,7 +26,9 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Cache pour les assets statiques
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
