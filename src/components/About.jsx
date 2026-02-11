@@ -118,7 +118,7 @@ const About = () => {
                                 <Quote size={48} />
                             </motion.div>
                             <p className="text-xl md:text-2xl font-medium italic text-slate-200 mb-8 leading-relaxed">
-                                "Nous ne comprenons pas pourquoi on doit nous enseigner la façon dont nous devons préserver nos rapports sociaux à cette époque. Cela devrait être spontané. L'islam établit un équilibre à respecter."
+                                "Nous ne comprenons pas pourquoi on doit nous enseigner la façon dont nous devons préserver nos rapports sociaux à cette époque. Cela devrait être spontané. L'islam établit un équilibre à respecter"
                             </p>
                             <footer className="flex items-center gap-4 border-t border-slate-700 pt-6">
                                 <motion.div
