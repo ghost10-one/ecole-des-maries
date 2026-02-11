@@ -192,7 +192,7 @@ const Partners = () => {
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="bg-dark/50 rounded-lg p-6 border border-slate-700">
+                                <div className="bg-slate-50 dark:bg-dark/50 rounded-lg p-6 border border-slate-200 dark:border-slate-700">
                                     <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                                         <Globe className="h-5 w-5 text-primary" />
                                         Pays Bénéficiaires
@@ -213,8 +213,7 @@ const Partners = () => {
                                         ))}
                                     </div>
                                 </div>
-
-                                <div className="bg-dark/50 rounded-lg p-6 border border-slate-700">
+                                <div className="bg-slate-50 dark:bg-dark/50 rounded-lg p-6 border border-slate-200 dark:border-slate-700">
                                     <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                                         <Heart className="h-5 w-5 text-secondary" />
                                         Objectifs Clés

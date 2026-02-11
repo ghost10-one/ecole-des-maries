@@ -3,7 +3,7 @@ import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin, HeartHandshake } from
 
 const Footer = () => {
     return (
-        <footer id="contact" className="bg-dark-card border-t border-slate-800 py-16 relative overflow-hidden">
+        <footer id="contact" className="bg-dark-card border-t border-slate-200 dark:border-slate-800 py-16 relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
 
@@ -49,19 +49,18 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-
                 <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-sm text-slate-500">
                         &copy; {new Date().getFullYear()} École des Maris Modèles. Tous droits réservés.
                     </p>
                     <div className="flex gap-4">
-                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
+                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
                             <Facebook size={20} />
                         </a>
-                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
+                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
                             <Twitter size={20} />
                         </a>
-                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
+                        <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all hover:scale-110">
                             <Linkedin size={20} />
                         </a>
                     </div>

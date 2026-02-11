@@ -21,14 +21,31 @@ const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+            className="fixed bottom-8 right-8 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-primary to-primary-light shadow-lg hover:shadow-2xl transition-all duration-300 group"
             aria-label="Toggle theme"
         >
-            {isDark ? (
-                <Sun className="h-6 w-6 group-hover:rotate-180 transition-transform duration-500" />
-            ) : (
-                <Moon className="h-6 w-6 group-hover:-rotate-12 transition-transform duration-500" />
-            )}
+            {/* Toggle Track */}
+            <div className="relative w-14 h-7 bg-white/20 rounded-full transition-all duration-300">
+                {/* Toggle Slider */}
+                <div
+                    className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-all duration-300 ease-in-out ${isDark ? 'left-0.5' : 'left-7'
+                        }`}
+                >
+                    {/* Icon inside slider */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        {isDark ? (
+                            <Moon className="h-4 w-4 text-primary" />
+                        ) : (
+                            <Sun className="h-4 w-4 text-secondary" />
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* Label Text */}
+            <span className="text-white text-sm font-medium pr-1">
+                {isDark ? 'Sombre' : 'Clair'}
+            </span>
         </button>
     );
 };

@@ -3,25 +3,82 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Dark mode colors (default) */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --border-color: #334155;
+    --glow-primary: rgba(20, 78, 196, 0.3);
+    --glow-secondary: rgba(247, 200, 56, 0.3);
+  }
+
+  html.light {
+    /* Light mode colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border-color: #e2e8f0;
+    --glow-primary: rgba(20, 78, 196, 0.15);
+    --glow-secondary: rgba(247, 200, 56, 0.15);
+  }
+
   * {
-    @apply border-slate-700;
+    @apply border-slate-700 transition-colors duration-300;
   }
   
   body {
-    @apply bg-dark text-white antialiased transition-colors duration-300;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply antialiased;
   }
   
-  /* Light mode */
-  html.light body {
-    @apply bg-slate-50 text-slate-900;
-  }
-  
+  /* Light mode overrides */
   html.light * {
     @apply border-slate-300;
+  }
+
+  html.light body {
+    @apply bg-gradient-to-br from-slate-50 via-white to-blue-50;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
+  }
+
+  /* Card styles */
+  html.light .bg-dark-card {
+    @apply bg-white shadow-lg;
+  }
+
+  html.light .bg-dark {
+    @apply bg-slate-50;
+  }
+
+  /* Text colors in light mode */
+  html.light .text-white {
+    @apply text-slate-900;
+  }
+
+  html.light .text-slate-300 {
+    @apply text-slate-600;
+  }
+
+  html.light .text-slate-400 {
+    @apply text-slate-500;
+  }
+
+  /* Border colors in light mode */
+  html.light .border-slate-700 {
+    @apply border-slate-200;
+  }
+
+  html.light .border-slate-800 {
+    @apply border-slate-300;
   }
 }
 
@@ -31,11 +88,20 @@
   }
   
   .glow-blue {
-    box-shadow: 0 0 60px rgba(20, 78, 196, 0.3);
+    box-shadow: 0 0 60px var(--glow-primary);
   }
   
   .glow-gold {
-    box-shadow: 0 0 60px rgba(247, 200, 56, 0.3);
+    box-shadow: 0 0 60px var(--glow-secondary);
+  }
+
+  /* Light mode glow effects */
+  html.light .glow-blue {
+    box-shadow: 0 0 40px rgba(20, 78, 196, 0.2), 0 10px 30px rgba(20, 78, 196, 0.1);
+  }
+
+  html.light .glow-gold {
+    box-shadow: 0 0 40px rgba(247, 200, 56, 0.2), 0 10px 30px rgba(247, 200, 56, 0.1);
   }
 }
 
@@ -77,3 +143,4 @@
 .animate-float-slow {
   animation: float-slow 12s ease-in-out infinite;
 }
+

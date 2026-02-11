@@ -1,16 +1,79 @@
-# React + Vite
+# New Deal Technologique - École des Maris
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site web moderne pour l'École des Maris, construit avec React, Vite et TailwindCSS.
 
-Currently, two official plugins are available:
+## 🚀 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** - Bibliothèque UI
+- **Vite** - Build tool et dev server
+- **TailwindCSS** - Framework CSS
+- **Framer Motion** - Animations
+- **React Router** - Navigation
+- **Lucide React** - Icônes
 
-## React Compiler
+## 📦 Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Installer les dépendances
+npm install
 
-## Expanding the ESLint configuration
+# Lancer le serveur de développement
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Builder pour la production
+npm run build
+
+# Prévisualiser le build de production
+npm run preview
+```
+
+## 🌐 Déploiement sur Netlify
+
+### Déploiement automatique via Git
+
+1. Connectez votre dépôt GitHub/GitLab à Netlify
+2. Netlify détectera automatiquement la configuration dans `netlify.toml`
+3. Les paramètres de build sont :
+   - **Build command:** `npm run build`
+   - **Publish directory:** `dist`
+   - **Node version:** 20
+
+### Déploiement manuel
+
+```bash
+# Installer Netlify CLI
+npm install -g netlify-cli
+
+# Se connecter à Netlify
+netlify login
+
+# Déployer
+netlify deploy --prod
+```
+
+## 📁 Structure du projet
+
+```
+new-deal-technologique/
+├── public/           # Fichiers statiques
+│   └── _redirects   # Configuration des redirections SPA
+├── src/
+│   ├── components/  # Composants React
+│   ├── pages/       # Pages de l'application
+│   ├── App.jsx      # Composant principal
+│   └── main.jsx     # Point d'entrée
+├── netlify.toml     # Configuration Netlify
+└── package.json
+```
+
+## 🔧 Configuration
+
+Le fichier `netlify.toml` contient :
+- Commandes de build
+- Redirections pour le SPA routing
+- Headers de sécurité
+- Configuration du cache pour les assets
+
+## 📝 License
+
+Propriété de l'École des Maris

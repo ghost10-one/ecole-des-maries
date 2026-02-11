@@ -7,26 +7,42 @@ const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { scrollY } = useScroll();
 
-    const headerBackground = useTransform(
-        scrollY,
-        [0, 100],
-        ['rgba(15, 23, 42, 0.8)', 'rgba(15, 23, 42, 0.95)']
-    );
+    const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
+        // Observer pour les changements de thème (classe 'light')
+        const observer = new MutationObserver(() => {
+            const theme = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+            setIsDark(theme === 'dark');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+        // Initial check for theme
+        const initialTheme = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+        setIsDark(initialTheme === 'dark');
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            observer.disconnect();
+        };
     }, []);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
         <motion.header
-            className="sticky top-0 z-50 w-full border-b border-slate-800 backdrop-blur supports-[backdrop-filter]:bg-dark/80"
-            style={{ backgroundColor: headerBackground }}
+            className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-dark/80 transition-shadow duration-300"
+            style={{
+                backgroundColor: isScrolled
+                    ? (isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)')
+                    : (isDark ? 'rgba(15, 23, 42, 0.8)' : 'rgba(255, 255, 255, 0.8)'),
+                boxShadow: isScrolled ? '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)' : 'none'
+            }}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -50,7 +66,7 @@ const Header = () => {
                     >
                         <HeartHandshake className="h-6 w-6" />
                     </motion.div>
-                    <span className="font-heading text-lg tracking-wider">
+                    <span className={`font-heading text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
                         ÉCOLE DES <span className="text-secondary">MARIS</span>
                     </span>
                 </motion.a>
@@ -67,7 +83,7 @@ const Header = () => {
                         <motion.a
                             key={item.label}
                             href={item.href}
-                            className="transition-colors hover:text-secondary text-slate-300 relative"
+                            className={`transition-colors hover:text-secondary ${isDark ? 'text-slate-300' : 'text-slate-600'} relative`}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
@@ -101,7 +117,7 @@ const Header = () => {
 
                     {/* Mobile Menu Button */}
                     <motion.button
-                        className="md:hidden inline-flex items-center justify-center rounded-md text-white hover:bg-slate-800 transition-colors h-10 w-10"
+                        className={`md:hidden inline-flex items-center justify-center rounded-md ${isDark ? 'text-white hover:bg-slate-800' : 'text-slate-900 hover:bg-slate-100'} transition-colors h-10 w-10`}
                         onClick={toggleMenu}
                         whileTap={{ scale: 0.9 }}
                     >
