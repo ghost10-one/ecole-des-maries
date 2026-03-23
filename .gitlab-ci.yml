@@ -1,13 +1,13 @@
 stages:
   - build
-  - test
+  - push
   - deploy
 
 variables:
-  DOCKER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-  DOCKER_IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
 
-# Build Docker image
+# 1️⃣ Build Docker image
 build:
   stage: build
   image: docker:24-dind
@@ -16,53 +16,45 @@ build:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t $DOCKER_IMAGE -t $DOCKER_IMAGE_LATEST .
-    - docker push $DOCKER_IMAGE
-    - docker push $DOCKER_IMAGE_LATEST
+    - docker build -t $IMAGE_TAG -t $IMAGE_LATEST .
   only:
     - main
     - develop
 
-# Test the application
-test:
-  stage: test
-  image: node:18-alpine
+# 2️⃣ Push Docker image sur GitLab Registry
+push:
+  stage: push
+  image: docker:24-dind
+  services:
+    - docker:24-dind
   before_script:
-    - npm ci
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - npm run build
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - node_modules/
+    - docker push $IMAGE_TAG
+    - docker push $IMAGE_LATEST
   only:
     - main
     - develop
-    - merge_requests
 
-# Deploy to Render (production)
-deploy:production:
+# 3️⃣ Déploiement sur Render (ou autre hébergeur)
+deploy_staging:
   stage: deploy
   image: curlimages/curl:latest
   script:
-    - |
-      curl -X POST $RENDER_DEPLOY_HOOK_URL
-  only:
-    - main
-  when: manual
-  environment:
-    name: production
-    url: https://ecole-des-maris.onrender.com
-
-# Deploy to Render (staging)
-deploy:staging:
-  stage: deploy
-  image: curlimages/curl:latest
-  script:
-    - |
-      curl -X POST $RENDER_STAGING_DEPLOY_HOOK_URL
+    - curl -X POST $RENDER_STAGING_DEPLOY_HOOK_URL
   only:
     - develop
   environment:
     name: staging
     url: https://ecole-des-maris-staging.onrender.com
+
+deploy_production:
+  stage: deploy
+  image: curlimages/curl:latest
+  script:
+    - curl -X POST $RENDER_DEPLOY_HOOK_URL
+  only:
+    - main
+  environment:
+    name: production
+    url: https://ecole-des-maris.onrender.com
