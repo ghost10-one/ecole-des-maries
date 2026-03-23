@@ -66,9 +66,11 @@ const Header = () => {
                     >
                         <HeartHandshake className="h-6 w-6" />
                     </motion.div>
-                    <span className={`font-heading text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    {/* <span className={`font-heading text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
                         ÉCOLE DES <span className="text-secondary">MARIS</span>
-                    </span>
+                    </span> */}
+
+                    <img src="/home/aziz/Desktop/ecole-des-maris/new-deal-technologique/src/assets/icon1.png" alt="" />
                 </motion.a>
 
                 {/* Desktop Navigation */}
