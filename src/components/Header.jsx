@@ -70,6 +70,9 @@ const Header = () => {
                         ÉCOLE DES <span className="text-secondary">MARIS</span>
                     </span> */}
 
+                         {/* CHANGEMENT PAR LE LOGO */}
+
+
                     <img src="/home/aziz/Desktop/ecole-des-maris/new-deal-technologique/src/assets/icon1.png" alt="" />
                 </motion.a>
 
