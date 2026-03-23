@@ -72,7 +72,7 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        L'ÉCOLE DES <br className="hidden md:inline" />
+                        ASSOCIATION  <br className="hidden md:inline" />
                         <motion.span
                             className="text-gradient"
                             animate={{
@@ -84,7 +84,7 @@ const Hero = () => {
                                 ease: "linear"
                             }}
                         >
-                            MARIS MODÈLES
+                            ÉCOLE DES MARIS 
                         </motion.span>
                     </motion.h1>
 
