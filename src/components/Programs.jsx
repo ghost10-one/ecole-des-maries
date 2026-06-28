@@ -1,6 +1,6 @@
 import React from 'react';
-import { Clock, Users, CheckCircle, GraduationCap, Heart, Home, Shield, Baby, Briefcase, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Clock, Users, CheckCircle, GraduationCap, Heart, Home, Shield, Baby, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion'; // eslint-disable-line no-unused-vars
 
 const programs = [
     {
@@ -148,7 +148,7 @@ const Programs = () => {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    {programs.map((program, index) => (
+                    {programs.map((program) => (
                         <motion.div
                             key={program.id}
                             className="group bg-dark border border-slate-800 rounded-2xl overflow-hidden"
