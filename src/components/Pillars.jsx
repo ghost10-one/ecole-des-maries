@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Home, HeartPulse, ShieldCheck, Users, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
